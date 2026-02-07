@@ -20,6 +20,7 @@
 
 ## 📢 News
 
+- **2026-02-07** 🎙️ Added local wake-word voice assistant (\"hey sam\") with OpenAI transcription + TTS and Raspberry Pi 4 support.
 - **2026-02-06** ✨ Added Moonshot/Kimi provider, Discord integration, and enhanced security hardening!
 - **2026-02-05** ✨ Added Feishu channel, DeepSeek provider, and enhanced scheduled tasks support!
 - **2026-02-04** 🚀 Released v0.1.3.post4 with multi-provider & Docker support! Check [release notes](https://github.com/HKUDS/nanobot/releases/tag/v0.1.3.post4) for details.
@@ -87,6 +88,12 @@ uv tool install nanobot-ai
 pip install nanobot-ai
 ```
 
+**Install voice dependencies** (wake word + TTS)
+
+```bash
+pip install 'nanobot-ai[voice]'
+```
+
 ## 🚀 Quick Start
 
 > [!TIP]
@@ -124,6 +131,45 @@ nanobot agent -m "What is 2+2?"
 ```
 
 That's it! You have a working AI assistant in 2 minutes.
+
+## 🎙️ Voice Assistant (\"hey sam\")
+
+Run a local, always-on voice assistant with wake word detection and OpenAI audio for transcription + TTS.
+
+**1. Install system deps (Raspberry Pi 4)**
+
+```bash
+sudo apt-get update
+sudo apt-get install -y portaudio19-dev libsndfile1
+```
+
+**2. Install voice deps**
+
+```bash
+pip install 'nanobot-ai[voice]'
+```
+
+**3. Configure** (`~/.nanobot/config.json`)
+
+```json
+{
+  "voice": {
+    "enabled": true,
+    "wakeWord": "hey sam",
+    "wakewordModels": ["/home/pi/hey_sam.onnx"],
+    "openaiTtsVoice": "alloy"
+  }
+}
+```
+
+**4. Run**
+
+```bash
+nanobot voice
+```
+
+> [!NOTE]
+> For the exact phrase \"hey sam\", you must provide a custom openwakeword `.onnx` model in `voice.wakewordModels`.
 
 ## 🖥️ Local Models (vLLM)
 
@@ -355,6 +401,21 @@ Config file: `~/.nanobot/config.json`
 | `aihubmix` | LLM (API gateway, access to all models) | [aihubmix.com](https://aihubmix.com) |
 | `dashscope` | LLM (Qwen) | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 
+### Voice Assistant
+
+Key options (see `ASSISTANT.md` for full reference):
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `voice.enabled` | `false` | Enable the background voice assistant |
+| `voice.wakeWord` | `"hey sam"` | Wake phrase |
+| `voice.wakewordModels` | `[]` | Paths to openwakeword `.onnx` models |
+| `voice.wakewordThreshold` | `0.5` | Detection threshold |
+| `voice.sampleRate` | `16000` | Input audio sample rate |
+| `voice.openaiApiKey` | `""` | OpenAI API key (fallbacks to `providers.openai.apiKey`) |
+| `voice.openaiTranscribeModel` | `gpt-4o-mini-transcribe` | Transcription model |
+| `voice.openaiTtsModel` | `gpt-4o-mini-tts` | TTS model |
+
 
 ### Security
 
@@ -375,6 +436,7 @@ Config file: `~/.nanobot/config.json`
 | `nanobot agent -m "..."` | Chat with the agent |
 | `nanobot agent` | Interactive chat mode |
 | `nanobot gateway` | Start the gateway |
+| `nanobot voice` | Run local wake-word voice assistant |
 | `nanobot status` | Show status |
 | `nanobot channels login` | Link WhatsApp (scan QR) |
 | `nanobot channels status` | Show channel status |
@@ -440,6 +502,7 @@ nanobot/
 ├── providers/      # 🤖 LLM providers (OpenRouter, etc.)
 ├── session/        # 💬 Conversation sessions
 ├── config/         # ⚙️ Configuration
+├── voice/          # 🎙️ Wake-word voice assistant
 └── cli/            # 🖥️ Commands
 ```
 

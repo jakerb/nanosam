@@ -94,6 +94,22 @@ pip install nanobot-ai
 pip install 'nanobot-ai[voice]'
 ```
 
+> **If you are on macOS with Python 3.14+**: `onnxruntime` currently ships wheels up to Python 3.12. Create a Python 3.12 (or 3.11) virtualenv and install there so the `voice` command is available:
+>
+> ```bash
+> # Install Python 3.12 once via Homebrew
+> brew install python@3.12
+>
+> # From repo root
+> rm -rf .venv
+> /usr/local/bin/python3.12 -m venv .venv
+> ./.venv/bin/python -m pip install --upgrade pip
+> ./.venv/bin/pip install -e '.[voice]'
+> 
+> # Run voice assistant
+> ./.venv/bin/nanobot voice
+> ```
+
 ## 🚀 Quick Start
 
 > [!TIP]

@@ -115,7 +115,7 @@ class ToolsConfig(BaseModel):
 class VoiceConfig(BaseModel):
     """Voice assistant configuration (wake word + TTS)."""
     enabled: bool = False
-    wake_word: str = "hey sam"
+    wake_word: str = "hey jarvis"
     wakeword_models: list[str] = Field(default_factory=list)
     wakeword_threshold: float = 0.5
     wakeword_cooldown_s: float = 2.0

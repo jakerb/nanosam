@@ -22,4 +22,4 @@ The skill format and metadata structure follow OpenClaw's conventions to maintai
 | `summarize` | Summarize URLs, files, and YouTube videos |
 | `tmux` | Remote-control tmux sessions |
 | `skill-creator` | Create new skills |
-| `voice-assistant` | Local wake-word voice assistant (\"hey sam\") |
+| `voice-assistant` | Local wake-word voice assistant (\"hey jarvis\") |

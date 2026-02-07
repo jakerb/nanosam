@@ -1,13 +1,13 @@
 ---
 name: voice-assistant
-description: Run the local wake-word voice assistant ("hey sam") with OpenAI voice + TTS.
+description: Run the local wake-word voice assistant ("hey jarvis") with OpenAI voice + TTS.
 homepage: https://github.com/HKUDS/nanobot
 metadata: {"nanobot":{"emoji":"🎙️"}}
 ---
 
 # Voice Assistant (Wake Word)
 
-This skill enables a local, always-on voice assistant for nanobot with the wake word **"hey sam"**. It runs on-device for wake word detection and uses OpenAI audio models for transcription + TTS.
+This skill enables a local, always-on voice assistant for nanobot with the wake word **"hey jarvis"**. It runs on-device for wake word detection and uses OpenAI audio models for transcription + TTS.
 
 ## Install (Raspberry Pi 4)
 
@@ -28,15 +28,14 @@ Edit `~/.nanobot/config.json` and enable voice:
 {
   "voice": {
     "enabled": true,
-    "wakeWord": "hey sam",
-    "wakewordModels": ["/home/pi/hey_sam.onnx"],
+    "wakeWord": "hey jarvis",
     "openaiTtsVoice": "alloy"
   }
 }
 ```
 
 Notes:
-- You must provide a **wake word model** for "hey sam". Use `openwakeword` to train a custom model and point `wakewordModels` to the `.onnx` file.
+- "hey jarvis" is included as a built-in openwakeword model. You only need `wakewordModels` for a custom wake phrase.
 - Set `voice.openaiApiKey` or `providers.openai.apiKey` in config.
 - Default sample rate is 16kHz for Raspberry Pi 4 efficiency.
 

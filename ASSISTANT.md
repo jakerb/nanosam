@@ -1,4 +1,4 @@
-# Voice Assistant ("hey sam")
+# Voice Assistant ("hey jarvis")
 
 This project now includes a local wake-word voice assistant that runs in the background on a Raspberry Pi 4. It uses on-device wake word detection and OpenAI audio models for transcription + text-to-speech (TTS), then routes text into nanobot.
 
@@ -23,8 +23,7 @@ pip install 'nanobot-ai[voice]'
 {
   "voice": {
     "enabled": true,
-    "wakeWord": "hey sam",
-    "wakewordModels": ["/home/pi/hey_sam.onnx"],
+    "wakeWord": "hey jarvis",
     "openaiTtsVoice": "alloy"
   }
 }
@@ -40,9 +39,9 @@ nanobot voice
 nanobot gateway
 ```
 
-## Wake Word Model ("hey sam")
+## Wake Word Model ("hey jarvis")
 
-The wake word detector is powered by `openwakeword`. For the exact phrase "hey sam", you must train a custom model and provide the `.onnx` path in `voice.wakewordModels`. This keeps wake word detection local and lightweight for the Pi 4.
+The wake word detector is powered by `openwakeword`. The phrase "hey jarvis" is available as a built-in model, so no custom `.onnx` is required unless you want a different wake word.
 
 ## How It Works
 
@@ -59,7 +58,7 @@ The wake word detector is powered by `openwakeword`. For the exact phrase "hey s
 Enable the background voice assistant.
 
 `voice.wakeWord`
-Wake phrase (default: `"hey sam"`).
+Wake phrase (default: `"hey jarvis"`).
 
 `voice.wakewordModels`
 List of paths to openwakeword `.onnx` models.

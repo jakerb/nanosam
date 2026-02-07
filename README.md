@@ -20,10 +20,10 @@
 
 ## 📢 News
 
-- **2026-02-07** 🎙️ Added local wake-word voice assistant (\"hey sam\") with OpenAI transcription + TTS and Raspberry Pi 4 support.
+- **2026-02-07** 🎙️ Added local wake-word voice assistant (\"hey jarvis\") with OpenAI transcription + TTS and Raspberry Pi 4 support.
 - **2026-02-06** ✨ Added Moonshot/Kimi provider, Discord integration, and enhanced security hardening!
 - **2026-02-05** ✨ Added Feishu channel, DeepSeek provider, and enhanced scheduled tasks support!
-- **2026-02-04** 🚀 Released v0.1.3.post4 with multi-provider & Docker support! Check [release notes](https://github.com/HKUDS/nanobot/releases/tag/v0.1.3.post4) for details.
+- **2026-02-04** 🚀 Released v0.1.3.post4 with multi-provider & Docker support! Check [release notes](https://github.com/jakerb/nanosam/releases/tag/v0.1.3.post4) for details.
 - **2026-02-03** ⚡ Integrated vLLM for local LLM support and improved natural language task scheduling!
 - **2026-02-02** 🎉 nanobot officially launched! Welcome to try 🐈 nanobot!
 
@@ -71,7 +71,7 @@
 **Install from source** (latest features, recommended for development)
 
 ```bash
-git clone https://github.com/HKUDS/nanobot.git
+git clone https://github.com/jakerb/nanosam.git
 cd nanobot
 pip install -e .
 ```
@@ -132,7 +132,7 @@ nanobot agent -m "What is 2+2?"
 
 That's it! You have a working AI assistant in 2 minutes.
 
-## 🎙️ Voice Assistant (\"hey sam\")
+## 🎙️ Voice Assistant (\"hey jarvis\")
 
 Run a local, always-on voice assistant with wake word detection and OpenAI audio for transcription + TTS.
 
@@ -155,8 +155,7 @@ pip install 'nanobot-ai[voice]'
 {
   "voice": {
     "enabled": true,
-    "wakeWord": "hey sam",
-    "wakewordModels": ["/home/pi/hey_sam.onnx"],
+    "wakeWord": "hey jarvis",
     "openaiTtsVoice": "alloy"
   }
 }
@@ -169,7 +168,7 @@ nanobot voice
 ```
 
 > [!NOTE]
-> For the exact phrase \"hey sam\", you must provide a custom openwakeword `.onnx` model in `voice.wakewordModels`.
+> \"hey jarvis\" ships as a built-in openwakeword model. You only need `voice.wakewordModels` if you want a custom wake word.
 
 ## 🖥️ Local Models (vLLM)
 
@@ -408,7 +407,7 @@ Key options (see `ASSISTANT.md` for full reference):
 | Option | Default | Description |
 |--------|---------|-------------|
 | `voice.enabled` | `false` | Enable the background voice assistant |
-| `voice.wakeWord` | `"hey sam"` | Wake phrase |
+| `voice.wakeWord` | `"hey jarvis"` | Wake phrase |
 | `voice.wakewordModels` | `[]` | Paths to openwakeword `.onnx` models |
 | `voice.wakewordThreshold` | `0.5` | Detection threshold |
 | `voice.sampleRate` | `16000` | Input audio sample rate |
@@ -510,7 +509,7 @@ nanobot/
 
 PRs welcome! The codebase is intentionally small and readable. 🤗
 
-**Roadmap** — Pick an item and [open a PR](https://github.com/HKUDS/nanobot/pulls)!
+**Roadmap** — Pick an item and [open a PR](https://github.com/jakerb/nanosam/pulls)!
 
 - [x] **Voice Transcription** — Support for Groq Whisper (Issue #13)
 - [ ] **Multi-modal** — See and hear (images, voice, video)
@@ -521,26 +520,26 @@ PRs welcome! The codebase is intentionally small and readable. 🤗
 
 ### Contributors
 
-<a href="https://github.com/HKUDS/nanobot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=HKUDS/nanobot&max=100&columns=12" />
+<a href="https://github.com/jakerb/nanosam/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jakerb/nanosam&max=100&columns=12" />
 </a>
 
 
 ## ⭐ Star History
 
 <div align="center">
-  <a href="https://star-history.com/#HKUDS/nanobot&Date">
+  <a href="https://star-history.com/#jakerb/nanosam&Date">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=HKUDS/nanobot&type=Date&theme=dark" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=HKUDS/nanobot&type=Date" />
-      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=HKUDS/nanobot&type=Date" style="border-radius: 15px; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=jakerb/nanosam&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=jakerb/nanosam&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=jakerb/nanosam&type=Date" style="border-radius: 15px; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);" />
     </picture>
   </a>
 </div>
 
 <p align="center">
   <em> Thanks for visiting ✨ nanobot!</em><br><br>
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=HKUDS.nanobot&style=for-the-badge&color=00d4ff" alt="Views">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=jakerb.nanosam&style=for-the-badge&color=00d4ff" alt="Views">
 </p>
 
 

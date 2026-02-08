@@ -18,9 +18,14 @@ fi
 
 # System packages required for audio and scientific deps
 sudo apt-get update
-sudo apt-get install -y \
-  python3-venv python3-dev build-essential libatlas-base-dev \
-  portaudio19-dev libsndfile1
+
+# Try atlas first; if unavailable (e.g., Debian trixie), fall back to openblas
+if sudo apt-get install -y python3-venv python3-dev build-essential libatlas-base-dev portaudio19-dev libsndfile1; then
+  :
+else
+  echo "libatlas-base-dev not available; falling back to libopenblas-dev" >&2
+  sudo apt-get install -y python3-venv python3-dev build-essential libopenblas-dev portaudio19-dev libsndfile1
+fi
 
 # Create virtualenv
 rm -rf .venv

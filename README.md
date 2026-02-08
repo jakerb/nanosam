@@ -110,6 +110,23 @@ pip install 'nanobot-ai[voice]'
 > ./.venv/bin/nanobot voice
 > ```
 
+> **On Raspberry Pi / Linux (voice deps)**: use Python 3.12/3.11 with a venv and install system audio/math libs first, then install the voice extra inside that venv:
+>
+> ```bash
+> # System deps (Raspberry Pi OS / Debian)
+> sudo apt-get update
+> sudo apt-get install -y python3-venv python3-dev build-essential libatlas-base-dev portaudio19-dev libsndfile1
+>
+> # From repo root
+> rm -rf .venv
+> python3.12 -m venv .venv   # or python3.11
+> ./.venv/bin/python -m pip install --upgrade pip wheel setuptools
+> ./.venv/bin/pip install -e '.[voice]'
+>
+> # Run voice assistant (inside venv)
+> ./.venv/bin/nanobot voice
+> ```
+
 ## 🚀 Quick Start
 
 > [!TIP]

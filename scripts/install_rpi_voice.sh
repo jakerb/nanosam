@@ -47,16 +47,18 @@ if ! find_py; then
   PY_VER="3.11"
 fi
 
+# Choose tflite-runtime version for the detected interpreter
+TFLITE_VERSION="2.14.0"
+
 # System packages required for audio and scientific deps
 sudo apt-get update
 
-# Try atlas first; if unavailable (e.g., Debian trixie), fall back to openblas.
-# Also attempt versioned dev/venv packages for the chosen interpreter when available.
-if sudo apt-get install -y "python${PY_VER}-venv" "python${PY_VER}-dev" python3-venv python3-dev build-essential libatlas-base-dev portaudio19-dev libsndfile1; then
+# Prefer atlas; if missing, fall back to openblas. Versioned python*-dev/venv packages may not exist—ignore failures.
+if sudo apt-get install -y python3-venv python3-dev build-essential libatlas-base-dev portaudio19-dev libsndfile1; then
   :
 else
   echo "libatlas-base-dev not available; falling back to libopenblas-dev" >&2
-  sudo apt-get install -y "python${PY_VER}-venv" "python${PY_VER}-dev" python3-venv python3-dev build-essential libopenblas-dev portaudio19-dev libsndfile1
+  sudo apt-get install -y python3-venv python3-dev build-essential libopenblas-dev portaudio19-dev libsndfile1 || true
 fi
 
 # Create virtualenv
